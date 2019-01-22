@@ -20,7 +20,7 @@ script:
   - go vet ./...
   - go test -v -race ./...
   # Only build binaries from the latest Go release.
-  - gox -os="linux darwin windows" -arch="amd64" -ldflags "-X main.Rev=`git rev-parse --short HEAD`" -verbose ./...;
+  - gox -os="linux" -arch="amd64" -ldflags "-X main.Rev=`git rev-parse --short HEAD`" -verbose ./...;
 
 deploy:
   provider: releases
@@ -28,8 +28,6 @@ deploy:
   api_key:
     secure: $api_key
   file:
-  - captain_windows_amd64.exe
-  - captain_darwin_amd64
   - captain_linux_amd64
   on:
     repo: yusofleet/captain
