@@ -26,7 +26,7 @@ deploy:
   provider: releases
   skip_cleanup: true
   api_key:
-    secure: $api_key
+    secure: $GITHUB_TOKEN
   file:
   - captain_linux_amd64
   on:
