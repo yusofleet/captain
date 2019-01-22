@@ -1,5 +1,4 @@
-[![Build Status](https://travis-ci.org/harbur/captain.svg?branch=master)](https://travis-ci.org/harbur/captain) [![Coverage Status](https://coveralls.io/repos/github/harbur/captain/badge.svg?branch=master)](https://coveralls.io/github/harbur/captain?branch=master)
-
+[![Build Status](https://travis-ci.org/yusofleet/captain.svg?branch=master)](https://travis-ci.org/yusofleet/captain)
 # Introduction
 
 Captain - Convert your Git workflow to Docker containers ready for Continuous Delivery
