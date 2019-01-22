@@ -6,6 +6,8 @@ matrix:
   allow_failures:
     - go: tip
 
+go_import_path: github.com/harbur/captain
+
 before_install:
   - go get github.com/mitchellh/gox
 
