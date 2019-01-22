@@ -1,18 +1,34 @@
 language: go
-
-go: 
- - 1.6
-
-services:
-  - docker
+sudo: false
+matrix:
+  include:
+    - go: 1.11
+  allow_failures:
+    - go: tip
 
 before_install:
-  - go get github.com/Masterminds/glide
-  - go get golang.org/x/tools/cmd/cover
-  - go get github.com/mattn/goveralls
-  - glide install
-  - go get
+  - go get github.com/mitchellh/gox
+
+install:
+  - # skip
 
 script:
- - go test -v -covermode=count -coverprofile=coverage.out
- - goveralls -coverprofile=coverage.out -service=travis-ci -repotoken $COVERALLS_TOKEN
+  - go get -t -v ./...
+#  - diff -u <(echo -n) <(gofmt -d .)
+  - go vet ./...
+  - go test -v -race ./...
+  # Only build binaries from the latest Go release.
+  - gox -os="linux darwin windows" -arch="amd64" -ldflags "-X main.Rev=`git rev-parse --short HEAD`" -verbose ./...;
+
+deploy:
+  provider: releases
+  skip_cleanup: true
+  api_key:
+    secure: $api_key
+  file:
+  - captain_windows_amd64.exe
+  - captain_darwin_amd64
+  - captain_linux_amd64
+  on:
+    repo: yusofleet/captain
+    tags: true
