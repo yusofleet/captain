@@ -7,6 +7,5 @@ RUN CGO_ENABLED=0 go build -a -tags netgo -ldflags '-w -extldflags "-static"' -o
 RUN chmod +x /captain
 
 FROM alpine:3.8
-
 COPY --from=build /captain /bin/captain
 ENTRYPOINT [ "/bin/captain" ]
